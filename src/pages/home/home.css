@@ -1,0 +1,73 @@
+.homeDiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+.objectTransformsDiv {
+  width: 500px;
+  height: 500px;
+  background-color: aqua;
+}
+.objectDiv {
+  width: 500px;
+  height: 500px;
+  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.object {
+  height: 100px;
+  width: 200px;
+  background-color: black;
+}
+.setting {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2px;
+  gap: 2px;
+}
+label{
+  z-index: 99;
+  width: 30px;
+}
+.settingLabel{
+  width: 60px;
+  background-color: red;
+  z-index: 99;
+}
+.rangeValue {
+  outline: none;
+  width: 50px;
+  z-index: 99;
+}
+input[type="range"] {
+  z-index: 99;
+  height: 20px;
+  -webkit-appearance: none;
+  width: 20rem;
+  border-radius: 25px;
+}
+input[type="range"]::-webkit-slider-runnable-track {
+  background-color: rgb(48, 47, 47,1 );
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: purple;
+}
+input[type="range"]::-moz-range-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: purple;
+}
+.borderHeader{
+  font-size: 1.25rem;
+}
