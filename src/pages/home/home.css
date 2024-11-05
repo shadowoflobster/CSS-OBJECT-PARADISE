@@ -1,19 +1,17 @@
 .homeDiv {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  
   gap: 16px;
   margin-top: 10px;
 }
 .objectTransformsDiv {
-  width: 500px;
-  height: 500px;
-  background-color: aqua;
+  width: 520px;
+  height: fit-content;
+  background-color: #1e272e;
 }
 .objectDiv {
   width: 500px;
   height: 500px;
-  background-color: red;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -21,7 +19,7 @@
 .object {
   height: 100px;
   width: 200px;
-  background-color: black;
+  background-color: #1e272e;
 }
 .setting {
   display: flex;
@@ -29,14 +27,18 @@
   justify-content: space-between;
   padding: 2px;
   gap: 2px;
+  padding: 2px;
 }
 label{
+  color:#d2dae2;
+  
   z-index: 99;
   width: 30px;
 }
 .settingLabel{
+  font-size: 12px;
   width: 60px;
-  background-color: red;
+  color:#d2dae2;
   z-index: 99;
 }
 .rangeValue {
@@ -70,4 +72,42 @@ input[type="range"]::-moz-range-thumb {
 }
 .borderHeader{
   font-size: 1.25rem;
+  color:#d2dae2;
+  margin-left: 2px;
+}
+.colorSettingsDiv{
+  width:500px;
+  height:600px;
+  background-color:#1e272e;
+}
+.colorSetting{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+.color-input-wrapper{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+}
+.colorLabel{
+  width: fit-content;
+}
+input[type="color"]{
+  height: 50px;
+  width: 50px;
+  background:none; 
+  border: none;
+  outline: none;
+  padding: 0;
+  top: -50%;
+  left: -50%;
+  position: absolute;
+}
+.hashInput{
+
 }

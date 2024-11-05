@@ -23,6 +23,12 @@ const Home = () => {
     radiusBR: 0,
     radiusBL: 0,
   });
+  const [colorValue, setColorValue] = useState({
+    bgColor: "#FFFFFF",
+    objColor: "#000000",
+    borderColor: "#FF0000",
+  });
+
   const [showCss, setShowCss] = useState(false);
 
   const handleRangeChange = (e, type) => {
@@ -35,7 +41,15 @@ const Home = () => {
           : newValue,
     }));
   };
-
+  const handleColorChange = (e, type) => {
+    const newValue = e.target.value;
+    const bg = document.body;
+    setColorValue((prevColorValue) => ({
+      ...prevColorValue,
+      [type]: newValue,
+    }));
+    // bg.backgroundcolor=colorValue.bgColor;
+  };
   const handleResetButton = () => {
     setSliderValue({
       width: 150,
@@ -66,6 +80,8 @@ const Home = () => {
     <div className="homeDiv">
       <div className="objectTransformsDiv">
         <div className="settingDiv">
+          <span className="borderHeader">Size:</span>
+
           {/* width */}
           <div className="setting">
             <label className="settingLabel">Width:</label>
@@ -104,6 +120,7 @@ const Home = () => {
             ></input>
             <label>px</label>
           </div>
+          <span className="borderHeader">Transforms:</span>
           {/*SCALE */}
           <div className="setting">
             <label className="settingLabel">Scale:</label>
@@ -423,7 +440,6 @@ const Home = () => {
             ></input>
             <label>px</label>
           </div>
-
           <button className="resetBtn" onClick={handleResetButton}>
             Reset
           </button>
@@ -463,7 +479,10 @@ const Home = () => {
           )}
         </div>
       </div>
-      <div className="objectDiv">
+      <div
+        className="objectDiv"
+        style={{ backgroundColor: `${colorValue.bgColor}` }}
+      >
         <div
           className="object"
           id="objectToManipulate"
@@ -476,16 +495,76 @@ const Home = () => {
             rotateZ(${sliderValue.rotateZ}deg)
             skewX(${sliderValue.skewX}deg)
             skewY(${sliderValue.skewY}deg)`,
+            background:`${colorValue.objColor}`,
             width: `${sliderValue.width}px`,
             height: `${sliderValue.height}px`,
-            border: `0px solid white`,
-            borderTop: `${sliderValue.borderT}px solid white`,
-            borderRight: `${sliderValue.borderR}px solid white`,
-            borderBottom: `${sliderValue.borderB}px solid white`,
-            borderLeft: `${sliderValue.borderL}px solid white`,
-            borderRadius:`${sliderValue.radiusTL}px ${sliderValue.radiusTR}px ${sliderValue.radiusBR}px ${sliderValue.radiusBL}px`
+            border: `0px solid ${colorValue.borderColor}`,
+            borderTop: `${sliderValue.borderT}px solid ${colorValue.borderColor}`,
+            borderRight: `${sliderValue.borderR}px solid ${colorValue.borderColor}`,
+            borderBottom: `${sliderValue.borderB}px solid ${colorValue.borderColor}`,
+            borderLeft: `${sliderValue.borderL}px solid ${colorValue.borderColor}`,
+            borderRadius: `${sliderValue.radiusTL}px ${sliderValue.radiusTR}px ${sliderValue.radiusBR}px ${sliderValue.radiusBL}px`,
           }}
         ></div>
+      </div>
+      <div className="colorSettingsDiv">
+        <div className="colorSetting">
+          <label className="colorLabel">Background color:</label>
+          <div className="color-input-wrapper">
+            <input
+              id="bgColor"
+              type="color"
+              value={colorValue.bgColor}
+              onChange={(e) => handleColorChange(e, "bgColor")}
+            ></input>
+            {console.log(colorValue.bgColor)}
+          </div>
+        
+
+        <input
+          className="hashInput"
+          value={colorValue.bgColor}
+          onChange={(e) => handleColorChange(e, "bgColor")}
+        ></input>
+        </div>
+        <div className="colorSetting">
+          <label className="colorLabel">Object color:</label>
+          <div className="color-input-wrapper">
+            <input
+              id="objColor"
+              type="color"
+              value={colorValue.objColor}
+              onChange={(e) => handleColorChange(e, "objColor")}
+            ></input>
+            {console.log(colorValue.objColor)}
+          </div>
+        
+
+        <input
+          className="hashInput"
+          value={colorValue.objColor}
+          onChange={(e) => handleColorChange(e, "objColor")}
+        ></input>
+        </div>
+        <div className="colorSetting">
+          <label className="colorLabel">Border color:</label>
+          <div className="color-input-wrapper">
+            <input
+              id="borderColor"
+              type="color"
+              value={colorValue.borderColor}
+              onChange={(e) => handleColorChange(e, "borderColor")}
+            ></input>
+            {console.log(colorValue.borderColor)}
+          </div>
+        
+
+        <input
+          className="hashInput"
+          value={colorValue.borderColor}
+          onChange={(e) => handleColorChange(e, "borderColor")}
+        ></input>
+        </div>
       </div>
     </div>
   );
