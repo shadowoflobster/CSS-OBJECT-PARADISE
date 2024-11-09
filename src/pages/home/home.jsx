@@ -28,6 +28,34 @@ const Home = () => {
     objColor: "#000000",
     borderColor: "#FF0000",
   });
+  const [keyFrames, setKeyFrames] = useState({});
+
+  const updateKeyFrames = (percentage, newValues) => {
+    const key = `${percentage}%`;
+    setKeyFrames((prevKeyFrames) => ({
+      ...prevKeyFrames,
+      [key]: {
+        ...prevKeyFrames[key],
+        newValues,
+      },
+    }));
+  };
+
+  const [selectedPercentage, setSelectedPercentage] = useState({});
+
+  const handleSave = () => {
+    updateKeyFrames(selectedPercentage, sliderValue);
+  };
+  const [keyframeDots, setKeyframeDots] = useState([]);
+
+const addDot = () => {
+  if (!keyframeDots.includes(selectedPercentage)) {
+    setKeyframeDots([...keyframeDots, selectedPercentage]);
+    handleSave();
+    console.log(keyFrames);
+  }
+};
+
 
   const [showCss, setShowCss] = useState(false);
 
@@ -495,7 +523,7 @@ const Home = () => {
             rotateZ(${sliderValue.rotateZ}deg)
             skewX(${sliderValue.skewX}deg)
             skewY(${sliderValue.skewY}deg)`,
-            background:`${colorValue.objColor}`,
+            background: `${colorValue.objColor}`,
             width: `${sliderValue.width}px`,
             height: `${sliderValue.height}px`,
             border: `0px solid ${colorValue.borderColor}`,
@@ -519,13 +547,12 @@ const Home = () => {
             ></input>
             {console.log(colorValue.bgColor)}
           </div>
-        
 
-        <input
-          className="hashInput"
-          value={colorValue.bgColor}
-          onChange={(e) => handleColorChange(e, "bgColor")}
-        ></input>
+          <input
+            className="hashInput"
+            value={colorValue.bgColor}
+            onChange={(e) => handleColorChange(e, "bgColor")}
+          ></input>
         </div>
         <div className="colorSetting">
           <label className="colorLabel">Object color:</label>
@@ -538,13 +565,12 @@ const Home = () => {
             ></input>
             {console.log(colorValue.objColor)}
           </div>
-        
 
-        <input
-          className="hashInput"
-          value={colorValue.objColor}
-          onChange={(e) => handleColorChange(e, "objColor")}
-        ></input>
+          <input
+            className="hashInput"
+            value={colorValue.objColor}
+            onChange={(e) => handleColorChange(e, "objColor")}
+          ></input>
         </div>
         <div className="colorSetting">
           <label className="colorLabel">Border color:</label>
@@ -557,14 +583,43 @@ const Home = () => {
             ></input>
             {console.log(colorValue.borderColor)}
           </div>
-        
 
-        <input
-          className="hashInput"
-          value={colorValue.borderColor}
-          onChange={(e) => handleColorChange(e, "borderColor")}
-        ></input>
+          <input
+            className="hashInput"
+            value={colorValue.borderColor}
+            onChange={(e) => handleColorChange(e, "borderColor")}
+          ></input>
         </div>
+      </div>
+      <div className="keyframesDiv">
+        <div className="keyframeRange">
+        <input
+        className="keyframeRangeInput"
+          type="range"
+          min="0"
+          max="100"
+          value={selectedPercentage}
+          onChange={(e) => setSelectedPercentage(parseInt(e.target.value))}
+          style={{ width: "100%" }}
+        />
+        {keyframeDots.map((dot, index) => (
+    <button
+      onClick={(e)=>console.log(`clicked ${dot}%`)}
+      key={index}
+      style={{
+        position: 'absolute',
+        top: '-10px', 
+        left: `${dot}%`,
+        width: '10px',
+        height: '10px',
+        borderRadius: '50%',
+        border:0,
+        backgroundColor: 'white', 
+      }}
+    />
+  ))}</div>
+        <input className="frameInput" type="number" min="0" max="100"></input>
+        <button className="frameButton" onClick={addDot}></button>
       </div>
     </div>
   );
